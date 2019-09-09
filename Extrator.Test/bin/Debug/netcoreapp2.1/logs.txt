@@ -1,0 +1,2 @@
+2019-09-05 09:34:55.7477|DEBUG|Extrator.Test.UnitTest1|Configurei
+2019-09-09 10:08:38.0940|DEBUG|Extrator.Test.UnitTest1|Configurei

@@ -2,7 +2,11 @@ C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\Extrator.runtimeconfig.json
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\Extrator.runtimeconfig.dev.json
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\Extrator.dll
-C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.csprojAssemblyReference.cache
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.csproj.CoreCompileInputs.cache
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.AssemblyInfoInputs.cache
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.AssemblyInfo.cs
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\dbsettings[template].json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Debug\netcoreapp2.1\Extrator.pdb
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.dll
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.pdb
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Debug\netcoreapp2.1\Extrator.csprojAssemblyReference.cache

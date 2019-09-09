@@ -6,7 +6,7 @@ namespace Extrator
     {
         static void Main(string[] args)
         {
-
+            
         }
     }
 }

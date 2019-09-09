@@ -5,39 +5,32 @@
     using Extrator.SQLContext.Oracle;
     using Extrator.SQLContext.Postgres;
     using Microsoft.Extensions.Configuration;
+    using System;
 
     public class DatabaseFactory
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        
+
         public IDatabase GetDatabase(IConfigurationRoot config)
         {
             Logger.Debug("Getting database config...");
-            string driver;
-            try
+            var driver = config.GetSection("Driver").Value;
+            if (string.IsNullOrEmpty(driver)) throw new NullReferenceException("[Driver]");
+            Logger.Info($"Driver: {driver}");
+            switch (driver.ToUpperInvariant())
             {
-                driver = config.GetSection("Driver").Value.ToUpperInvariant();
-                Logger.Info($"Driver: {driver}");
-                switch (driver)
-                {
-                    case "MSSQL":
-                        return new MSSQLContext();
-                    case "ORACLE":
-                        return new OracleContext();
-                    case "POSTGRES":
-                        return new PostgresContext();
-                    default:
-                        {
-                            Logger.Error($"Driver not implemented: {driver}");
-                            return null;
-                        }                        
-                }
+                case "MSSQL":
+                    return new MSSQLContext(config);
+                case "ORACLE":
+                    return new OracleContext(config);
+                case "POSTGRES":
+                    return new PostgresContext(config);
+                default:
+                    {
+                        Logger.Error($"Driver not implemented: {driver}", new NotImplementedException($"[Driver]: {driver}"));
+                        throw new NotImplementedException($"[Driver]: {driver}");
+                    }
             }
-            catch (System.Exception e)
-            {
-                Logger.Error(e, "Driver config not found.");
-                return null;
-            }            
         }
     }
 }
