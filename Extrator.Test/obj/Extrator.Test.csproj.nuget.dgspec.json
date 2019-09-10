@@ -56,6 +56,10 @@
               "version": "[2.1.0, )",
               "autoReferenced": true
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
             "xunit": {
               "target": "Package",
               "version": "[2.4.0, )"

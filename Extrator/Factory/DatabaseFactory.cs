@@ -10,8 +10,14 @@
     public class DatabaseFactory
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly IConfigurationRoot config;
 
-        public IDatabase GetDatabase(IConfigurationRoot config)
+        public DatabaseFactory(IConfigurationRoot config)
+        {
+            this.config = config;
+        }
+
+        public IDatabase GetDatabase()
         {
             Logger.Debug("Getting database config...");
             var driver = config.GetSection("Driver").Value;
@@ -27,7 +33,7 @@
                     return new PostgresContext(config);
                 default:
                     {
-                        Logger.Error($"Driver not implemented: {driver}", new NotImplementedException($"[Driver]: {driver}"));
+                        Logger.Fatal($"Driver not implemented: {driver}", new NotImplementedException($"[Driver]: {driver}"));
                         throw new NotImplementedException($"[Driver]: {driver}");
                     }
             }

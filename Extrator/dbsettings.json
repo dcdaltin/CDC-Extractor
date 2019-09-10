@@ -4,8 +4,7 @@
   "ListenedTables": {
     "Sale": [ "table1", "table2", "table3" ],
     "Event": [ "table4", "table5" ],
-    "Store": [ "table6" ],
-    "XXX":  ["XXX", "YYY"]
+    "Store": [ "table6" ]
   },
   "Queries": {
     "Sale": "write the query to extract sales",

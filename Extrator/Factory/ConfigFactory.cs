@@ -26,6 +26,8 @@
         {
             var sections = config.GetSection("ListenedTables").GetChildren();
             if (!sections.Any()) throw new NullReferenceException("[ListenedTables]");
+            var hasSameSections = !config.GetSection("Queries").GetChildren().Where(a => !sections.Select(b => b.Key).Contains(a.Key)).Any();
+            if (!hasSameSections) throw new InvalidDataException("[ListenedTables] and [Queries] fields do not match");
             var json = new JObject();
             var tables = sections.Select(a => a.GetChildren().Select(b => b.Value));
             foreach (var list in tables)

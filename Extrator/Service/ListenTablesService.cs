@@ -48,6 +48,24 @@
             return false;
         }
 
+        public ICollection<string> CheckSectionChanges()
+        {
+            var sections = config.GetSection("ListenedTables").GetChildren();
+            ICollection<string> result = new List<string>();
+            bool test = false;
+            foreach (var section in sections)
+            {
+                foreach (var table in section.GetChildren().Select(a => a.Value))
+                {
+                    var changeTest = HasTableChanges(table);
+                    test = test || changeTest;
+                }
+                if (test) result.Add(section.Key);
+                test = false;
+            }
+            return result.Distinct().ToList();
+        }
+
         public JObject GetMessageData(string querySection)
         {
             var data = database.GetData(querySection).Result;

@@ -5,7 +5,7 @@ namespace Extrator.Test
     using System;
     using System.IO;
 
-    public class UnitTest1
+    public class ConfigBuildFactoryTest
     {
         [Fact]
         public void VerifyConfigFactory()
