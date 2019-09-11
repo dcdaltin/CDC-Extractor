@@ -10,7 +10,7 @@
 
     public class MSSQLContext : IDatabase
     {
-        private readonly IConfigurationRoot config;
+        private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static string trackingTemplate = @"	
     SELECT 
@@ -36,7 +36,7 @@
 			so.type='U'
 			and object_name(p.object_id) = '[table]'";
 
-        public MSSQLContext(IConfigurationRoot config)
+        public MSSQLContext(IConfiguration config)
         {
             this.config = config;
         }

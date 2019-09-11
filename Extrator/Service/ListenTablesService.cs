@@ -12,16 +12,16 @@
     using System.Threading.Tasks;
     using System;
 
-    public class ListenTablesService
+    public class ListenTablesService : IListenTableService
     {
-        private readonly IConfigurationRoot config;
-        private readonly IDatabase database;
+        private readonly IFactory factory;
+        private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public ListenTablesService(IConfigurationRoot config, IDatabase database)
+        public ListenTablesService(IFactory factory, IConfiguration config)
         {
+            this.factory = factory;
             this.config = config;
-            this.database = database;
         }
 
         private bool HasTableChanges(string table)
@@ -33,7 +33,7 @@
                 string file = r.ReadToEnd();
                 fileDataValues = JObject.Parse(file);
             }
-            string currentValue = database.LastChange(table);
+            string currentValue = factory.GetDatabase().LastChange(table);
             if (!string.Equals(currentValue, fileDataValues.Property(table).Value.ToString()))
             {
                 fileDataValues.Property(table).Value = currentValue;
@@ -68,7 +68,7 @@
 
         public IEnumerable<JObject> GetMessageData(string querySection)
         {
-            var data = database.GetData(querySection);
+            var data = factory.GetDatabase().GetData(querySection);
             foreach (var item in data)
             {
                 var jsonMessage = new JObject();

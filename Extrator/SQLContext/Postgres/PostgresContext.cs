@@ -11,11 +11,11 @@
 
     public class PostgresContext : IDatabase
     {
-        private readonly IConfigurationRoot config;
+        private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static string trackingTemplate = "select max(xmin::text::bigint)::varchar from [table]";
 
-        public PostgresContext(IConfigurationRoot config)
+        public PostgresContext(IConfiguration config)
         {
             this.config = config;
         }

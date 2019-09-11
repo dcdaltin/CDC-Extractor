@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "ec0274bf6edcb432341f01b81bab7fd5e4d038ed"
+    "signature": "c6060aae7be61280ff594662e81f53205aeb2f72"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,7 +13,9 @@
           "Microsoft.Extensions.Configuration.Json": "2.2.0",
           "Microsoft.Extensions.Hosting": "2.2.0",
           "Microsoft.Extensions.Hosting.Abstractions": "2.2.0",
+          "NCrontab": "3.3.1",
           "NLog": "4.6.7",
+          "NLog.Extensions.Logging": "1.5.4",
           "Npgsql": "4.0.10",
           "Oracle.ManagedDataAccess.Core": "2.19.31",
           "System.Data.SqlClient": "4.6.1"
@@ -344,6 +346,14 @@
           }
         }
       },
+      "NCrontab/3.3.1": {
+        "runtime": {
+          "lib/netstandard2.0/NCrontab.dll": {
+            "assemblyVersion": "3.3.1.0",
+            "fileVersion": "3.3.1.0"
+          }
+        }
+      },
       "Newtonsoft.Json/11.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -357,6 +367,18 @@
           "lib/netstandard2.0/NLog.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.6.7.10445"
+          }
+        }
+      },
+      "NLog.Extensions.Logging/1.5.4": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "2.2.0",
+          "NLog": "4.6.7"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.Extensions.Logging.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.5.4.1106"
           }
         }
       },
@@ -1442,6 +1464,13 @@
       "path": "microsoft.win32.registry/4.5.0",
       "hashPath": "microsoft.win32.registry.4.5.0.nupkg.sha512"
     },
+    "NCrontab/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-G3tzcIIgsiyZyVbHNPyn5+adaM9UjeVNgjrRsvXU7wo2sMhpvpQrir29dcjIND53H/fuTdgg9nI3SfFFg7barA==",
+      "path": "ncrontab/3.3.1",
+      "hashPath": "ncrontab.3.3.1.nupkg.sha512"
+    },
     "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
@@ -1455,6 +1484,13 @@
       "sha512": "sha512-xSIzXrIF89Ww6yoJPvyBcu4JLgNiDiEaTT4GyVltZEeVIvkgSm9J/srUy1Yz0EXwbTv502l8knoCFrgNc/MUMA==",
       "path": "nlog/4.6.7",
       "hashPath": "nlog.4.6.7.nupkg.sha512"
+    },
+    "NLog.Extensions.Logging/1.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-J72MUlcxJ/dITIdOIEeAUAXT93z1/yI7xY3U3r4cFLmJ/yJxm2BLzxJ/r7+Tpry/7s85N1HNXYG5OODRQhI96A==",
+      "path": "nlog.extensions.logging/1.5.4",
+      "hashPath": "nlog.extensions.logging.1.5.4.nupkg.sha512"
     },
     "Npgsql/4.0.10": {
       "type": "package",

@@ -34,7 +34,7 @@ namespace Extrator.Job
             while (!stoppingToken.IsCancellationRequested)
             {
                 Logger.Info("Checking for changes...");
-                var service = new ListenTablesService(config, database);
+                var service = new ListenTablesService(new Factory.Factory(config), config);
                 var sectionChanges = service.CheckSectionChanges();
                 foreach (var section in sectionChanges)
                 {

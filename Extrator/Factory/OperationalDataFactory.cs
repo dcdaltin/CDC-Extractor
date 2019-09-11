@@ -9,9 +9,9 @@
 
     public class OperationalDataFactory
     {
-        private IConfigurationRoot config;
+        private IConfiguration config;
 
-        public OperationalDataFactory(IConfigurationRoot config)
+        public OperationalDataFactory(IConfiguration config)
         {
             this.config = config;
         }

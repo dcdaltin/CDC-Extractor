@@ -10,11 +10,11 @@ namespace Extrator.MessageContext.ServiceBUS
 {
     public class ServiceBUS : IMessage
     {
-        private readonly IConfigurationRoot config;
+        private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly QueueClient queue;
 
-        public ServiceBUS(IConfigurationRoot config)
+        public ServiceBUS(IConfiguration config)
         {
             this.config = config;
             this.queue = GetQueue();

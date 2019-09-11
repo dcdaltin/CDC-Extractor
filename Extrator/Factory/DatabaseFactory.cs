@@ -10,9 +10,9 @@
     public class DatabaseFactory
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        private readonly IConfigurationRoot config;
+        private readonly IConfiguration config;
 
-        public DatabaseFactory(IConfigurationRoot config)
+        public DatabaseFactory(IConfiguration config)
         {
             this.config = config;
         }

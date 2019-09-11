@@ -10,11 +10,11 @@
 
     public class OracleContext : IDatabase
     {
-        private readonly IConfigurationRoot config;
+        private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static string trackingTemplate = "select TO_CHAR(max(ora_rowscn)) from [table]";
 
-        public OracleContext(IConfigurationRoot config)
+        public OracleContext(IConfiguration config)
         {
             this.config = config;
         }
