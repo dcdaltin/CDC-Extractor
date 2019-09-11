@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Extrator.MessageContext.ServiceBUS
 {
@@ -20,7 +21,7 @@ namespace Extrator.MessageContext.ServiceBUS
             this.queue = GetQueue();
         }
 
-        private QueueClient GetQueue()
+        internal QueueClient GetQueue()
         {
             var sbConnectionString = config.GetSection("Queue").GetSection("ConnectionString").Value;
             if (string.IsNullOrEmpty(sbConnectionString)) throw new NullReferenceException("[Queue]:[ConnectionString]");
@@ -29,11 +30,20 @@ namespace Extrator.MessageContext.ServiceBUS
             return new QueueClient(sbConnectionString, sbQueueName);
         }
 
-        public async void SendMessage(JObject data)
+        internal Message CreateMessage(string section, string data)
         {
-            var message = new Message(Encoding.UTF8.GetBytes(data.ToString()));
+            var message = new JObject();
+            message.Add("Timestamp", DateTime.Now);
+            message.Add("Section", section);
+            message.Add("Data", data);
+            return new Message(Encoding.UTF8.GetBytes(message.ToString()));
+        }
+
+        public Task SendMessage(string section, string data)
+        {
+            var message = CreateMessage(section, data);
             Logger.Info("Sending message...");
-            await queue.SendAsync(message);
+            return queue.SendAsync(message);
         }
     }
 }

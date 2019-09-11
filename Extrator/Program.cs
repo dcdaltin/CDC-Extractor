@@ -33,13 +33,15 @@
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
                     config.SetBasePath(Directory.GetCurrentDirectory());
-                    config.AddJsonFile("dbsettings.json", optional: false, reloadOnChange: true);
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile("dbsettings.json", optional: false, reloadOnChange: false);
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IFactory, Factory.Factory>();
                     services.AddSingleton<IListenTableService, ListenTablesService>();
+
+                    services.AddSingleton<TimedHostedService>();
 
                     services.AddLogging();
 
@@ -59,16 +61,5 @@
                 await host.WaitForShutdownAsync();
             }
         }
-
-        //public static void Main(string[] args)
-        //{
-        //    var configFactory = new ConfigFactory();
-        //    configFactory.BuildLogConfig();
-        //    var config = configFactory.BuildConfig();
-        //    var database = new DatabaseFactory(config).GetDatabase();
-        //    var message = new MessagingServiceFactory(config).GetMessageService();
-        //    var job = new RecurringJob(config, database, message);
-        //    Parallel.Invoke(async () => await job.StartAsync(new System.Threading.CancellationToken()));
-        //}
     }
 }

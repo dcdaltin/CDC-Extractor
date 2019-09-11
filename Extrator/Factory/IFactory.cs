@@ -7,5 +7,6 @@
     {
         IDatabase GetDatabase();
         IMessage GetMessagingService();
+        void BuildOperationalDataFile();
     }
 }

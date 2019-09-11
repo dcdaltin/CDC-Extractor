@@ -26,7 +26,7 @@
 
         private bool HasTableChanges(string table)
         {
-            if (!File.Exists("operationalData.json")) new OperationalDataFactory(config).BuildOperationalDataFile();
+            if (!File.Exists("operationalData.json")) factory.BuildOperationalDataFile();
             JObject fileDataValues;
             using (StreamReader r = new StreamReader("operationalData.json"))
             {
@@ -66,15 +66,12 @@
             return result.Distinct().ToList();
         }
 
-        public IEnumerable<JObject> GetMessageData(string querySection)
+        public IEnumerable<string> GetMessageData(string querySection)
         {
             var data = factory.GetDatabase().GetData(querySection);
             foreach (var item in data)
             {
-                var jsonMessage = new JObject();
-                jsonMessage.Add("Timestamp", DateTime.Now);
-                jsonMessage.Add("Data", JsonConvert.SerializeObject(item));
-                yield return jsonMessage;
+                yield return JsonConvert.SerializeObject(item);
             }
         }
     }

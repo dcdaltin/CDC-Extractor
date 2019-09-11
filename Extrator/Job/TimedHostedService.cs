@@ -4,6 +4,7 @@
     using Extrator.Service;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -30,24 +31,21 @@
             _logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(30));
+                TimeSpan.FromMinutes(10));
 
             return Task.CompletedTask;
         }
 
         private void DoWork(object state)
         {
-            _logger.LogInformation("Timed Background Service is working.");
             Logger.Info("Checking for changes...");
             var sectionChanges = _listenService.CheckSectionChanges();
             foreach (var section in sectionChanges)
             {
-                Logger.Info($"Sending message for section {section}");
+                Logger.Info($"Sending messages for section {section}");
                 var data = _listenService.GetMessageData(section);
-                foreach (var item in data)
-                {
-                    _factory.GetMessagingService().SendMessage(item);
-                }
+                Parallel.ForEach(data, (item) => _factory.GetMessagingService().SendMessage(section, item));
+                Logger.Info($"Messages sent!");
             }
         }
 

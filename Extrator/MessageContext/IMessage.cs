@@ -1,9 +1,10 @@
 ﻿namespace Extrator.MessageContext
 {
     using Newtonsoft.Json.Linq;
+    using System.Threading.Tasks;
 
     public interface IMessage
     {
-        void SendMessage(JObject data);
+        Task SendMessage(string section, string data);
     }
 }

@@ -5,6 +5,6 @@
     "Sale": [ "sku"]
   },
   "Queries": {
-    "Sale": "select * from sku where id_sku = 12"
+    "Sale": "select * from sku where id_sku > 100000"
   }
 }
