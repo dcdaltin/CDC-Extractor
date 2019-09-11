@@ -29,11 +29,11 @@ namespace Extrator.MessageContext.ServiceBUS
             return new QueueClient(sbConnectionString, sbQueueName);
         }
 
-        public void SendMessage(JObject data)
+        public async void SendMessage(JObject data)
         {
             var message = new Message(Encoding.UTF8.GetBytes(data.ToString()));
-            Logger.Info($"Sending message: {data.ToString()}");
-            queue.SendAsync(message);
+            Logger.Info("Sending message...");
+            await queue.SendAsync(message);
         }
     }
 }

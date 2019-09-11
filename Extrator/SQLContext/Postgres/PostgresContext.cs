@@ -20,7 +20,7 @@
             this.config = config;
         }
 
-        public Task<string> LastChange(string tableName)
+        public string LastChange(string tableName)
         {
             Logger.Debug($"Loking for changes on table {tableName}");
             var sql = new StringBuilder(trackingTemplate).Replace("[table]", tableName).ToString();
@@ -32,7 +32,7 @@
                 Logger.Debug($"Connecting e running query: {sql}");
                 using (var db = new NpgsqlConnection(conString))
                 {
-                    return db.QueryFirstOrDefaultAsync<string>(sql);
+                    return db.QueryFirstOrDefault<string>(sql);
                 }
             }
             catch (Exception e)
@@ -42,7 +42,7 @@
             }
         }
 
-        public Task<IEnumerable<dynamic>> GetData(string querySectionField)
+        public IEnumerable<dynamic> GetData(string querySectionField)
         {
             Logger.Debug($"Getting query from field {querySectionField}");
             var conString = config.GetSection("ConnectionString").Value;
@@ -54,7 +54,7 @@
                 Logger.Debug($"Connecting e running query: {query}");
                 using (var db = new NpgsqlConnection(conString))
                 {
-                    return db.QueryAsync(query);
+                    return db.Query(query);
                 }
             }
             catch (Exception e)

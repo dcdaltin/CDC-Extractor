@@ -5,7 +5,7 @@
 
     public interface IDatabase
     {
-        Task<string> LastChange(string tableName);
-        Task<IEnumerable<dynamic>> GetData(string querySectionField);
+        string LastChange(string tableName);
+        IEnumerable<dynamic> GetData(string querySectionField);
     }
 }

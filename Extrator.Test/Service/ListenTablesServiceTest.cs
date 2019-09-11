@@ -15,7 +15,7 @@
         public void CheckSectionChangesTest()
         {
             var config = new ConfigFactory().BuildConfig();
-            var database = new ServiceMocks().GetDatabaseMock().Object;
+            var database = new ServicesMock().GetDatabaseMock().Object;
             var service = new ListenTablesService(config, database);
             var result = service.CheckSectionChanges();
             Assert.InRange(result.Count,0,config.GetSection("ListenedTables").GetChildren().Count());

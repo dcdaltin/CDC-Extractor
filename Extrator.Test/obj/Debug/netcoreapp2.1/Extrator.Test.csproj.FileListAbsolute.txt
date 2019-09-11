@@ -18,3 +18,4 @@ C:\Users\dalto\source\repos\Extrator contínuo\Extrator.Test\obj\Debug\netcoreap
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator.Test\obj\Debug\netcoreapp2.1\Extrator.Test.pdb
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator.Test\bin\Debug\netcoreapp2.1\dbsettings.json
 C:\Users\dalto\source\repos\Extrator contínuo\Extrator.Test\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator.Test\bin\Debug\netcoreapp2.1\appsettings[template].json

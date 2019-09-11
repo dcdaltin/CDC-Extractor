@@ -28,7 +28,7 @@ namespace Extrator.Test
         public void VerifyOperationDataFileFactory()
         {
             var config = new ConfigFactory().BuildConfig();
-            new ConfigFactory().BuildOperationalDataFile(config);
+            new OperationalDataFactory(config).BuildOperationalDataFile();
             var hasFile = File.Exists("operationalData.json");
             var isEmpty = File.ReadAllLines("operationalData.json").Length == 0 ? true : false;
             Assert.True(hasFile);

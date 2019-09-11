@@ -1,0 +1,16 @@
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\appsettings[template].json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\dbsettings[template].json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\hostpolicy.dll
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\hostfxr.dll
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.exe
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.deps.json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.runtimeconfig.json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.runtimeconfig.dev.json
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.dll
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\bin\Release\netcoreapp2.1\win-x86\Extrator.pdb
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.csprojAssemblyReference.cache
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.csproj.CoreCompileInputs.cache
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.AssemblyInfoInputs.cache
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.AssemblyInfo.cs
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.dll
+C:\Users\dalto\source\repos\Extrator contínuo\Extrator\obj\Release\netcoreapp2.1\win-x86\Extrator.pdb

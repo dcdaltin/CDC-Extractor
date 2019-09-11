@@ -24,17 +24,17 @@
             this.database = database;
         }
 
-        public bool HasTableChanges(string table)
+        private bool HasTableChanges(string table)
         {
-            if (!File.Exists("operationalData.json")) new ConfigFactory().BuildOperationalDataFile(config);
+            if (!File.Exists("operationalData.json")) new OperationalDataFactory(config).BuildOperationalDataFile();
             JObject fileDataValues;
             using (StreamReader r = new StreamReader("operationalData.json"))
             {
                 string file = r.ReadToEnd();
                 fileDataValues = JObject.Parse(file);
             }
-            var currentValue = database.LastChange(table).Result;
-            if(!string.Equals(currentValue, fileDataValues.Property(table).Value.ToString()))
+            string currentValue = database.LastChange(table);
+            if (!string.Equals(currentValue, fileDataValues.Property(table).Value.ToString()))
             {
                 fileDataValues.Property(table).Value = currentValue;
                 using (StreamWriter file = File.CreateText("operationalData.json"))
@@ -66,13 +66,16 @@
             return result.Distinct().ToList();
         }
 
-        public JObject GetMessageData(string querySection)
+        public IEnumerable<JObject> GetMessageData(string querySection)
         {
-            var data = database.GetData(querySection).Result;
-            var jsonMessage = new JObject();
-            jsonMessage.Add("Timestamp", DateTime.Now);
-            jsonMessage.Add(data);
-            return jsonMessage;
+            var data = database.GetData(querySection);
+            foreach (var item in data)
+            {
+                var jsonMessage = new JObject();
+                jsonMessage.Add("Timestamp", DateTime.Now);
+                jsonMessage.Add("Data", JsonConvert.SerializeObject(item));
+                yield return jsonMessage;
+            }
         }
     }
 }
