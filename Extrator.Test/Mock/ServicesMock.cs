@@ -1,4 +1,6 @@
-﻿using Extrator.SQLContext;
+﻿using Extrator.Factory;
+using Extrator.SQLContext;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,18 @@ namespace Extrator.Test.Mock
         public Mock<IDatabase> GetDatabaseMock()
         {
             Mock<IDatabase> mock = new Mock<IDatabase>();
-            mock.Setup(a => a.LastChange(It.IsAny<string>())).ReturnsAsync("asd");
-            ICollection<dynamic> data = new List<dynamic>();
-            mock.Setup(a => a.GetData(It.IsAny<string>())).ReturnsAsync(data);
+            return mock;
+        }
+
+        public Mock<IConfiguration> GetConfigMock()
+        {
+            Mock<IConfiguration> mock = new Mock<IConfiguration>();
+            return mock;
+        }
+
+        public Mock<IFactory> GetFactoryMock()
+        {
+            Mock<IFactory> mock = new Mock<IFactory>();
             return mock;
         }
     }

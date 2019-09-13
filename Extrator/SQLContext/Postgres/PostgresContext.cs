@@ -25,14 +25,14 @@
             Logger.Debug($"Loking for changes on table {tableName}");
             var sql = new StringBuilder(trackingTemplate).Replace("[table]", tableName).ToString();
             Logger.Debug("Getting connection string...");
-            string conString = config.GetSection("ConnectionString").Value;
+            string conString = config.GetSection("ALL").GetSection("ConnectionString").Value;
             if (string.IsNullOrEmpty(conString)) throw new NullReferenceException("[ConnectionString]");
             try
             {
                 Logger.Debug($"Connecting e running query: {sql}");
                 using (var db = new NpgsqlConnection(conString))
                 {
-                    return db.QueryFirstOrDefault<string>(sql);
+                    return db.QuerySingleOrDefault<string>(sql);
                 }
             }
             catch (Exception e)
@@ -42,25 +42,20 @@
             }
         }
 
-        public IEnumerable<dynamic> GetData(string querySectionField)
+        public IEnumerable<dynamic> GetData(string querySectionField, IDictionary<string, string> param)
         {
             Logger.Debug($"Getting query from field {querySectionField}");
-            var conString = config.GetSection("ConnectionString").Value;
+            var conString = config.GetSection("ALL").GetSection("ConnectionString").Value;
             if (string.IsNullOrEmpty(conString)) throw new NullReferenceException("[ConnectionString]");
-            var query = config.GetSection("Queries")[querySectionField];
+            var query = config.GetSection("ALL").GetSection("Queries")[querySectionField];
             if (string.IsNullOrEmpty(conString)) throw new NullReferenceException("[Queries]");
-            try
+            Logger.Debug($"Connecting e running query: {query}");
+            using (var db = new NpgsqlConnection(conString))
             {
-                Logger.Debug($"Connecting e running query: {query}");
-                using (var db = new NpgsqlConnection(conString))
+                foreach (var item in db.Query(query))
                 {
-                    return db.Query(query);
+                    yield return item;
                 }
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e, $"[Queries]: {querySectionField}");
-                throw;
             }
         }
     }

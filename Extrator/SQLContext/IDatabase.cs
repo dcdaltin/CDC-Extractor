@@ -6,6 +6,6 @@
     public interface IDatabase
     {
         string LastChange(string tableName);
-        IEnumerable<dynamic> GetData(string querySectionField);
+        IEnumerable<dynamic> GetData(string querySectionField, IDictionary<string, string> param);
     }
 }

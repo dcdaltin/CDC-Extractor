@@ -1,10 +1,27 @@
 {
+  "CDC": {
+    "Driver": "oracle",
+    "ConnectionString": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.100.110)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=dblagoa))); User Id=indikatore;Password=indikatore;",
+    "Entities": {
+      "Sale": {
+        "Listener": [
+          {
+            "QueryParameter": "CDC",
+            "Table": "INDIKATORE.CDC"
+          }
+        ],
+        "Query": "SELECT * FROM INDIKATORE.CDC WHERE ORA_ROWSCN > :CDC"
+      }
+    }
+  },
+  "ALL": {
   "Driver": "mssql",
   "ConnectionString": "Data Source=192.168.0.200;Initial Catalog=SUPERLAGOA_V2;Persist Security Info=True;User ID=homolog;Password=1dikatore",
   "ListenedTables": {
-    "Sale": [ "sku"]
+    "Sale": ["sku"]
   },
   "Queries": {
     "Sale": "select * from sku where id_sku > 100000"
+  }
   }
 }

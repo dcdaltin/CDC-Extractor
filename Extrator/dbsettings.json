@@ -1,14 +1,40 @@
 {
-  "Driver": "database driver (postgres, mssql, oracle)",
-  "ConnectionString": "type database connection string",
-  "ListenedTables": {
-    "Sale": [ "table1", "table2", "table3" ],
-    "Event": [ "table4", "table5" ],
-    "Store": [ "table6" ]
+  "CDC": {
+    "Driver": "database driver (postgres, oracle)",
+    "ConnectionString": "type database connection string",
+    "Entities": {
+      "Sale": {
+        "Listener": [
+          {
+            "QueryParameter": "field1",
+            "Table": "table1"
+          }
+        ],
+        "Query": "Some query with a var described at previuos section"
+      },
+      "Store": {
+        "Listener": [
+          {
+            "QueryParameter": "field1",
+            "Table": "table1"
+          }
+        ],
+        "Query": "Some query"
+      }
+    }
   },
-  "Queries": {
-    "Sale": "write the query to extract sales",
-    "Event": "wirte the query to extract events",
-    "Store": "write the query to extract stores"
+  "ALL": {
+    "Driver": "database driver (postgres, mssql, oracle)",
+    "ConnectionString": "type database connection string",
+    "ListenedTables": {
+      "Sale": [ "table1", "table2", "table3" ],
+      "Event": [ "table4", "table5" ],
+      "Store": [ "table6" ]
+    },
+    "Queries": {
+      "Sale": "write the query to extract sales.",
+      "Event": "wirte the query to extract events",
+      "Store": "write the query to extract stores"
+    }
   }
 }

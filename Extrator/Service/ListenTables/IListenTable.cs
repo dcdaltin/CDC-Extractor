@@ -5,9 +5,8 @@
     using System.Collections.Generic;
     using System.Text;
 
-    interface IListenTableService
+    public interface IListenTable
     {
-        ICollection<string> CheckSectionChanges();
-        IEnumerable<string> GetMessageData(string querySection);
+        void Run();
     }
 }

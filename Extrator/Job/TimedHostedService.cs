@@ -1,52 +1,41 @@
 ﻿namespace Extrator.Job
 {
-    using Extrator.Factory;
     using Extrator.Service;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json.Linq;
     using System;
-    using System.Collections.Generic;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
 
     internal class TimedHostedService : IHostedService, IDisposable
     {
         private readonly ILogger _logger;
-        private readonly IFactory _factory;
-        private readonly IListenTableService _listenService;
+        private readonly IService _service;
+        private readonly IConfiguration _config;
         private Timer _timer;
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public TimedHostedService(ILogger<TimedHostedService> logger, IFactory factory, IListenTableService listenService)
+        public TimedHostedService(ILogger<TimedHostedService> logger, IService service, IConfiguration config)
         {
             _logger = logger;
-            _factory = factory;
-            _listenService = listenService;
+            _service = service;
+            _config = config;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Timed Background Service is starting.");
-
+            var interval = _config.GetSection("ListenInterval").Value;
+            if (string.IsNullOrEmpty(interval)) throw new NullReferenceException("[ListenInterval]");
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromMinutes(10));
+                TimeSpan.FromMinutes(int.Parse(interval)));
 
             return Task.CompletedTask;
         }
 
         private void DoWork(object state)
         {
-            Logger.Info("Checking for changes...");
-            var sectionChanges = _listenService.CheckSectionChanges();
-            foreach (var section in sectionChanges)
-            {
-                Logger.Info($"Sending messages for section {section}");
-                var data = _listenService.GetMessageData(section);
-                Parallel.ForEach(data, (item) => _factory.GetMessagingService().SendMessage(section, item));
-                Logger.Info($"Messages sent!");
-            }
+            _service.GetListenService().Run();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

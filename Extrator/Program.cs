@@ -39,15 +39,13 @@
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IFactory, Factory.Factory>();
-                    services.AddSingleton<IListenTableService, ListenTablesService>();
+                    services.AddSingleton<IService, Service.Service>();
 
                     services.AddSingleton<TimedHostedService>();
 
                     services.AddLogging();
 
-                    #region snippet1
                     services.AddHostedService<TimedHostedService>();
-                    #endregion
                 })
                 .UseConsoleLifetime()
                 .Build();
