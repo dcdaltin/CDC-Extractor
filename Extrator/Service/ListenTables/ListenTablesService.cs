@@ -15,11 +15,13 @@
         private readonly IFactory factory;
         private readonly IConfiguration config;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private IDictionary<string, string> changes;
 
         public ListenTablesService(IFactory factory, IConfiguration config)
         {
             this.factory = factory;
             this.config = config;
+            changes = new Dictionary<string, string>();
         }
 
         internal bool HasTableChanges(string table)
@@ -32,18 +34,9 @@
                 fileDataValues = JObject.Parse(file);
             }
             string currentValue = factory.GetDatabase().LastChange(table);
-            if (!string.Equals(currentValue, fileDataValues.Property(table).Value.ToString()))
-            {
-                fileDataValues.Property(table).Value = currentValue;
-                using (StreamWriter file = File.CreateText("operationalData.json"))
-                using (JsonTextWriter writer = new JsonTextWriter(file))
-                {
-                    fileDataValues.WriteTo(writer);
-                }
-                return true;
-            }
-
-            return false;
+            if (string.Equals(currentValue, fileDataValues.Property(table).Value.ToString())) return false;
+            changes.Add(table, currentValue);
+            return true;
         }
 
         internal ICollection<string> CheckSectionChanges()
@@ -62,6 +55,28 @@
                 test = false;
             }
             return result.Distinct().ToList();
+        }
+
+        internal void RefreshOperationalDataFile()
+        {
+            JObject fileDataValues;
+            using (StreamReader r = new StreamReader("operationalData.json"))
+            {
+                string file = r.ReadToEnd();
+                fileDataValues = JObject.Parse(file);
+            }
+
+            using (StreamWriter file = File.CreateText("operationalData.json"))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                foreach (var item in changes)
+                {
+                    fileDataValues.Property(item.Key).Value = item.Value;
+                }
+                fileDataValues.WriteTo(writer);
+            }
+
+            changes = new Dictionary<string, string>();
         }
 
         internal IEnumerable<string> GetMessageData(string querySection)
@@ -129,6 +144,8 @@
                 }
                 Logger.Info($"Messages sent!");
             }
+
+            RefreshOperationalDataFile();
         }
     }
 }
