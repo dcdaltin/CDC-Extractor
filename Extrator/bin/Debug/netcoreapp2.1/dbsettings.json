@@ -15,13 +15,13 @@
     }
   },
   "ALL": {
-  "Driver": "mssql",
-  "ConnectionString": "Data Source=192.168.0.200;Initial Catalog=SUPERLAGOA_V2;Persist Security Info=True;User ID=homolog;Password=1dikatore",
+  "Driver": "oracle",
+  "ConnectionString": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.100.110)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=dblagoa))); User Id=indikatore;Password=indikatore;",
   "ListenedTables": {
-    "Sale": ["sku"]
+    "Sale": ["INDIKATORE.CDC"]
   },
   "Queries": {
-    "Sale": "select * from sku where id_sku > 100000"
+    "Sale": "SELECT CODIGO_PRODUTO AS ProductCode, CODIGO_ESTABELECIMENTO AS StoreCode, QUANTIDADE_DEMANDA AS SaleQuantity, PRECO_UNITARIO_VENDA AS Price, DATA_MOVIMENTACAO AS \"Date\", QUANTIDADE_EM_ESTOQUE AS Stock FROM DEMANDA_E_ESTOQUE WHERE DATA_MOVIMENTACAO > CURRENT_DATE - 3"
   }
   }
 }

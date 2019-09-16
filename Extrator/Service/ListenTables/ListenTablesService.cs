@@ -26,7 +26,6 @@
 
         internal bool HasTableChanges(string table)
         {
-            if (!File.Exists("operationalData.json")) BuildOperationalDataFile();
             JObject fileDataValues;
             using (StreamReader r = new StreamReader("operationalData.json"))
             {
@@ -133,6 +132,7 @@
         public void Run()
         {
             Logger.Info("Checking for changes...");
+            BuildOperationalDataFile();
             var sectionChanges = CheckSectionChanges();
             foreach (var section in sectionChanges)
             {
