@@ -32,8 +32,11 @@ namespace Extrator.MessageContext.ServiceBUS
 
         internal Message CreateMessage(string section, string data)
         {
+            var customerID = config.GetSection("CustomerID").Value;
+            if (string.IsNullOrEmpty(customerID)) throw new NullReferenceException("[CustomerID]");
             var message = new JObject();
             message.Add("Timestamp", DateTime.Now);
+            message.Add("CustomerID", customerID);
             message.Add("Section", section);
             message.Add("Data", data);
             return new Message(Encoding.UTF8.GetBytes(message.ToString()));
