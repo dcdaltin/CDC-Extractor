@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dalto\\source\\repos\\Extrator contínuo\\Extrator\\Extrator.csproj": {}
+    "C:\\Users\\dcdal\\Source\\Repos\\Extrator contínuo\\Extrator\\Extrator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dalto\\source\\repos\\Extrator contínuo\\Extrator\\Extrator.csproj": {
+    "C:\\Users\\dcdal\\Source\\Repos\\Extrator contínuo\\Extrator\\Extrator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dalto\\source\\repos\\Extrator contínuo\\Extrator\\Extrator.csproj",
+        "projectUniqueName": "C:\\Users\\dcdal\\Source\\Repos\\Extrator contínuo\\Extrator\\Extrator.csproj",
         "projectName": "Extrator",
-        "projectPath": "C:\\Users\\dalto\\source\\repos\\Extrator contínuo\\Extrator\\Extrator.csproj",
-        "packagesPath": "C:\\Users\\dalto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dalto\\source\\repos\\Extrator contínuo\\Extrator\\obj\\",
+        "projectPath": "C:\\Users\\dcdal\\Source\\Repos\\Extrator contínuo\\Extrator\\Extrator.csproj",
+        "packagesPath": "C:\\Users\\dcdal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dcdal\\Source\\Repos\\Extrator contínuo\\Extrator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\dalto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dcdal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
